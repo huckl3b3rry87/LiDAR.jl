@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- A testing model that includes the Velodyne sensor model -->
+    <model name="my_velodyne">
+      <include>
+        <uri>model://velodyne_hdl32</uri>
+      </include>
+
+      <!-- Attach the plugin to this model -->
+      <plugin name="velodyne_control" filename="./libvelodyne_plugin.so">
+        <velocity>0</velocity>
+        <text>hello</text>
+      </plugin>
+    </model>
+
+
+    <model name="box">
+      <pose>0 0 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>.5</radius>
+            </sphere>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>.5</radius>
+            </sphere>
+          </geometry>
+        </visual>
+      </link>
+      <plugin name="model_push" filename="./libmodel_push.so"/>
+    </model> 
+
+    <model name="trashbin">
+      <pose>0 0 0 0 0 0</pose>
+      <link name="linked">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <plugin name="model_pull" filename="./libmodel_pull.so"/>
+    </model> 
+
+  </world>
+</sdf>
