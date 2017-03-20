@@ -1,13 +1,17 @@
 module LiDAR
 
-using RobotOS
-@rosimport std_msgs.msg: Float64MultiArray
-@rosimport geometry_msgs.msg: Point
-rostypegen()
-using std_msgs.msg
-using geometry_msgs.msg
+using PyCall
+@pyimport imp
+Echo=imp.load_source("Echo",Pkg.dir("LiDAR/src/EchoNodeModule/Echo.py"));
+#https://github.com/JuliaPy/PyCall.jl/issues/48
 
+#=
+r = @spawn Echo[:main]()
+proc_py=addprocs(1);
+echo=remotecall(2, Echo[:main]())
+=#
 
+export Echo
 
-
+println("loaded")
 end # module

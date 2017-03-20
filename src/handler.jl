@@ -21,15 +21,15 @@ function loop(pub_obj)
     npt.data = Array{Float64}(6)
     npt.data[6] = 0.0
     while ! is_shutdown()
-	npt.data[1] += 0.2
-	npt.data[2] = 0.0
-	npt.data[3] = 0.0
-        npt.data[4] = 0.0
-        npt.data[5] = 0.0
-        npt.data[6] += 0.2
-        # send information to ROS (then Gazebo)
-        publish(pub_obj, npt)
-        rossleep(loop_rate)
+      npt.data[1] += 0.2
+      npt.data[2] = 0.0
+      npt.data[3] = 0.0
+      npt.data[4] = 0.0
+      npt.data[5] = 0.0
+      npt.data[6] += 0.2
+      # send information to ROS (then Gazebo)
+      publish(pub_obj, npt)
+      rossleep(loop_rate)
     end
 end
 
@@ -45,4 +45,3 @@ end
 if ! isinteractive()
     main()
 end
-

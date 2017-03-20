@@ -48,6 +48,7 @@ class Echo(object):
 def main():
     rospy.init_node("echo", anonymous=True)
     n = Echo()
+    print("In main()")
     rospy.spin()
 
 if __name__ == "__main__":
