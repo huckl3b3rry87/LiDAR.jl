@@ -56,7 +56,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'LiDAR.jl'
-copyright = '2016, Jiayan Chen and Huckleberry Febbo'
+copyright = '2017, Jiayan Chen and Huckleberry Febbo'
 author = 'Jiayan Chen and Huckleberry Febbo'
 
 # The version info for the project you're documenting, acts as replacement for

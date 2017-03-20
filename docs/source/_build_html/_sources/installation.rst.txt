@@ -1,0 +1,156 @@
+Installation on Ubuntu 16.04
+##################################
+
+1. ``julia`` programs needed
+******************************
+
+get:
+
+::
+
+  Pkg.add("RobotOS")
+  Pkg.add("PyCall")
+
+
+It would also be wise to:
+::
+
+  Pkg.build("RobotOS")
+  Pkg.build("PyCall")
+
+2. Gazebo
+*************
+
+To install:
+::
+
+  curl -ssL http://get.gazebosim.org | sh
+
+Then to run:
+::
+
+  gazebo
+
+More `information is here <http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install>`_
+
+
+3. ``ROS``
+***********************
+
+To get it:
+::
+
+  sudo apt-get install python-rospkg
+
+  sudo apt-get ros-kinetic-gazebo-ros-pkgs
+  sudo apt-get ros-kinetic-simulators
+
+
+http://wiki.ros.org/ROS/EnvironmentVariables
+
+http://wiki.ros.org/kinetic/Installation/Ubuntu
+
+3. Initialization of Package
+******************************
+
+3.1. Run ``cmake .`` and ``make``
+--------------------------------
+A. open another terminal -> ``ctr``+``shift``+``t``
+
+#. navigate to the folder ``.scr/c_code``
+
+#. in the terminal type ``cmake .`` and hit ``enter``
+
+#. in the terminal type ``make`` and hit ``enter``
+
+3.2. Set path for gazebo plugins
+----------------------------------
+Not sure if this needs to be done:
+
+A. in the terminal type (only should have to do during initialization):
+::
+
+  export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
+
+  TODO: need to change path
+
+3.3 Get the ``velodyne_hdl32`` model for ``Gazebo``
+----------------------------------------------------
+
+Either:
+
+A. Fork the gazebo_models database by visiting https://bitbucket.org/osrf/gazebo_models/fork.
+
+**OR**
+
+B. Just copy the folder ``./LiDAR/scr/gazebo/gazebo_models`` into ``$HOME.gazebo/models/``
+
+.. sidebar:: Note
+
+  press ``ctr`` + ``h`` to show hidden folders (..like .gazebo)
+
+Potential Issues
+****************
+
+1. running ``using RobotOS`` in ``julia`` -> fails
+-----------------------------------------------------
+
+This may be due to path issues was fixed `here <https://github.com/jdlangs/RobotOS.jl/issues/23>`_.
+
+  * Additional `info here <http://answers.ros.org/question/39657/importerror-no-module-named-rospkg/>`_
+
+
+2. I had some issues with ``ros``
+
+http://wiki.ros.org/UpstreamPackages
+
+so I removed it:
+::
+
+  sudo aptitude remove python-rospkg
+  sudo apt-get remove ros-*
+
+  sudo apt-get purge ros-*
+  sudo apt-get autoremove
+
+  sudo apt-get purge '^ros-*'
+
+If you do not have ``aptitude``:
+::
+
+  sudo apt install aptitude
+
+Then I did:
+::
+
+  sudo aptitude -f install ros-kinetic-desktop-full
+  sudo apt install python-rosdep
+  rosdep update
+  rosdep check --from-paths . --ignore-src --rosdistro kinetic
+  rosdep install --from-paths . --ignore-src --rosdistro kinetic -y
+
+3. Issue After Starting Terminal.
+
+If you had to go through 2., then when you open a new terminal you might have to deal `with this issue <http://askubuntu.com/questions/367483/error-when-i-open-the-terminal-bash-opt-ros-hydro-setup-bash-no-such-file-o>`_:
+::
+
+  bash: /opt/ros/kinetic/setup.bash: No such file or directory
+  bash: /opt/ros/kinetic/setup.bash: No such file or directory
+  febbo@febbo-HP-Z220-SFF-Workstation:~$
+
+If you had typed:
+
+::
+  echo "source /opt/ros/kinetic/setup.zsh" >> ~/.zshrc
+  source ~/.zshrc
+
+* after following `1.6 from here <http://wiki.ros.org/kinetic/Installation/Ubuntu>`_
+
+https://ubuntuforums.org/showthread.php?t=1845124
+
+code:
+::
+  gksu gedit /etc/apt/sources.list
+
+  sudo apt update
+  sudo apt upgrade

@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation on Ubuntu 16.04 &mdash; LiDAR.jl 0.0.1-rc1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="LiDAR.jl 0.0.1-rc1 documentation" href="index.html"/>
+        <link rel="next" title="Basic Usage" href="run_ubuntu.html"/>
+        <link rel="prev" title="LiDAR.jl" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> LiDAR.jl
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation on Ubuntu 16.04</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#julia-programs-needed">1. <code class="docutils literal"><span class="pre">julia</span></code> programs needed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gazebo">2. Gazebo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ros">3. <code class="docutils literal"><span class="pre">ROS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initialization-of-package">3. Initialization of Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-cmake-and-make">3.1. Run <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">.</span></code> and <code class="docutils literal"><span class="pre">make</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-path-for-gazebo-plugins">3.2. Set path for gazebo plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-the-velodyne-hdl32-model-for-gazebo">3.3 Get the <code class="docutils literal"><span class="pre">velodyne_hdl32</span></code> model for <code class="docutils literal"><span class="pre">Gazebo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#potential-issues">Potential Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-using-robotos-in-julia-fails">1. running <code class="docutils literal"><span class="pre">using</span> <span class="pre">RobotOS</span></code> in <code class="docutils literal"><span class="pre">julia</span></code> -&gt; fails</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="run_ubuntu.html">Basic Usage</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LiDAR.jl</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation on Ubuntu 16.04</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation-on-ubuntu-16-04">
+<h1>Installation on Ubuntu 16.04<a class="headerlink" href="#installation-on-ubuntu-16-04" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="julia-programs-needed">
+<h2>1. <code class="docutils literal"><span class="pre">julia</span></code> programs needed<a class="headerlink" href="#julia-programs-needed" title="Permalink to this headline">¶</a></h2>
+<p>get:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;RobotOS&quot;</span><span class="p">)</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;PyCall&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It would also be wise to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s2">&quot;RobotOS&quot;</span><span class="p">)</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s2">&quot;PyCall&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gazebo">
+<h2>2. Gazebo<a class="headerlink" href="#gazebo" title="Permalink to this headline">¶</a></h2>
+<p>To install:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">curl</span> <span class="o">-</span><span class="n">ssL</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">get</span><span class="o">.</span><span class="n">gazebosim</span><span class="o">.</span><span class="n">org</span> <span class="o">|</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>Then to run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">gazebo</span>
+</pre></div>
+</div>
+<p>More <a class="reference external" href="http://gazebosim.org/tutorials?tut=install_ubuntu&amp;cat=install">information is here</a></p>
+</div>
+<div class="section" id="ros">
+<h2>3. <code class="docutils literal"><span class="pre">ROS</span></code><a class="headerlink" href="#ros" title="Permalink to this headline">¶</a></h2>
+<p>To get it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">rospkg</span>
+
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">ros</span><span class="o">-</span><span class="n">kinetic</span><span class="o">-</span><span class="n">gazebo</span><span class="o">-</span><span class="n">ros</span><span class="o">-</span><span class="n">pkgs</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">ros</span><span class="o">-</span><span class="n">kinetic</span><span class="o">-</span><span class="n">simulators</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://wiki.ros.org/ROS/EnvironmentVariables">http://wiki.ros.org/ROS/EnvironmentVariables</a></p>
+<p><a class="reference external" href="http://wiki.ros.org/kinetic/Installation/Ubuntu">http://wiki.ros.org/kinetic/Installation/Ubuntu</a></p>
+</div>
+<div class="section" id="initialization-of-package">
+<h2>3. Initialization of Package<a class="headerlink" href="#initialization-of-package" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-cmake-and-make">
+<h3>3.1. Run <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">.</span></code> and <code class="docutils literal"><span class="pre">make</span></code><a class="headerlink" href="#run-cmake-and-make" title="Permalink to this headline">¶</a></h3>
+<ol class="upperalpha simple">
+<li>open another terminal -&gt; <code class="docutils literal"><span class="pre">ctr``+``shift``+``t</span></code></li>
+<li>navigate to the folder <code class="docutils literal"><span class="pre">.scr/c_code</span></code></li>
+<li>in the terminal type <code class="docutils literal"><span class="pre">cmake</span> <span class="pre">.</span></code> and hit <code class="docutils literal"><span class="pre">enter</span></code></li>
+<li>in the terminal type <code class="docutils literal"><span class="pre">make</span></code> and hit <code class="docutils literal"><span class="pre">enter</span></code></li>
+</ol>
+</div>
+<div class="section" id="set-path-for-gazebo-plugins">
+<h3>3.2. Set path for gazebo plugins<a class="headerlink" href="#set-path-for-gazebo-plugins" title="Permalink to this headline">¶</a></h3>
+<p>Not sure if this needs to be done:</p>
+<p>A. in the terminal type (only should have to do during initialization):</p>
+<div class="highlight-default"><div class="highlight"><pre>export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
+
+TODO: need to change path
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-the-velodyne-hdl32-model-for-gazebo">
+<h3>3.3 Get the <code class="docutils literal"><span class="pre">velodyne_hdl32</span></code> model for <code class="docutils literal"><span class="pre">Gazebo</span></code><a class="headerlink" href="#get-the-velodyne-hdl32-model-for-gazebo" title="Permalink to this headline">¶</a></h3>
+<p>Either:</p>
+<ol class="upperalpha simple">
+<li>Fork the gazebo_models database by visiting <a class="reference external" href="https://bitbucket.org/osrf/gazebo_models/fork">https://bitbucket.org/osrf/gazebo_models/fork</a>.</li>
+</ol>
+<p><strong>OR</strong></p>
+<ol class="upperalpha simple" start="2">
+<li>Just copy the folder <code class="docutils literal"><span class="pre">./LiDAR/scr/gazebo/gazebo_models</span></code> into <code class="docutils literal"><span class="pre">$HOME.gazebo/models/</span></code></li>
+</ol>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">press <code class="docutils literal"><span class="pre">ctr</span></code> + <code class="docutils literal"><span class="pre">h</span></code> to show hidden folders (..like .gazebo)</p>
+</div>
+</div>
+</div>
+<div class="section" id="potential-issues">
+<h2>Potential Issues<a class="headerlink" href="#potential-issues" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="running-using-robotos-in-julia-fails">
+<h3>1. running <code class="docutils literal"><span class="pre">using</span> <span class="pre">RobotOS</span></code> in <code class="docutils literal"><span class="pre">julia</span></code> -&gt; fails<a class="headerlink" href="#running-using-robotos-in-julia-fails" title="Permalink to this headline">¶</a></h3>
+<p>This may be due to path issues was fixed <a class="reference external" href="https://github.com/jdlangs/RobotOS.jl/issues/23">here</a>.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Additional <a class="reference external" href="http://answers.ros.org/question/39657/importerror-no-module-named-rospkg/">info here</a></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>I had some issues with <code class="docutils literal"><span class="pre">ros</span></code></li>
+</ol>
+<p><a class="reference external" href="http://wiki.ros.org/UpstreamPackages">http://wiki.ros.org/UpstreamPackages</a></p>
+<p>so I removed it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">sudo</span> <span class="n">aptitude</span> <span class="n">remove</span> <span class="n">python</span><span class="o">-</span><span class="n">rospkg</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">remove</span> <span class="n">ros</span><span class="o">-*</span>
+
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">purge</span> <span class="n">ros</span><span class="o">-*</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">autoremove</span>
+
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">purge</span> <span class="s1">&#39;^ros-*&#39;</span>
+</pre></div>
+</div>
+<p>If you do not have <code class="docutils literal"><span class="pre">aptitude</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">aptitude</span>
+</pre></div>
+</div>
+<p>Then I did:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">sudo</span> <span class="n">aptitude</span> <span class="o">-</span><span class="n">f</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">kinetic</span><span class="o">-</span><span class="n">desktop</span><span class="o">-</span><span class="n">full</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">rosdep</span>
+<span class="n">rosdep</span> <span class="n">update</span>
+<span class="n">rosdep</span> <span class="n">check</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">paths</span> <span class="o">.</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">src</span> <span class="o">--</span><span class="n">rosdistro</span> <span class="n">kinetic</span>
+<span class="n">rosdep</span> <span class="n">install</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">paths</span> <span class="o">.</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">src</span> <span class="o">--</span><span class="n">rosdistro</span> <span class="n">kinetic</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Issue After Starting Terminal.</li>
+</ol>
+<p>If you had to go through 2., then when you open a new terminal you might have to deal <a class="reference external" href="http://askubuntu.com/questions/367483/error-when-i-open-the-terminal-bash-opt-ros-hydro-setup-bash-no-such-file-o">with this issue</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre>bash: /opt/ros/kinetic/setup.bash: No such file or directory
+bash: /opt/ros/kinetic/setup.bash: No such file or directory
+febbo@febbo-HP-Z220-SFF-Workstation:~$
+</pre></div>
+</div>
+<p>If you had typed:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>echo &#8220;source /opt/ros/kinetic/setup.zsh&#8221; &gt;&gt; ~/.zshrc
+source ~/.zshrc</dd>
+</dl>
+<ul class="simple">
+<li>after following <a class="reference external" href="http://wiki.ros.org/kinetic/Installation/Ubuntu">1.6 from here</a></li>
+</ul>
+<p><a class="reference external" href="https://ubuntuforums.org/showthread.php?t=1845124">https://ubuntuforums.org/showthread.php?t=1845124</a></p>
+<p>code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">gksu</span> <span class="n">gedit</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span>
+
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="run_ubuntu.html" class="btn btn-neutral float-right" title="Basic Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="LiDAR.jl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Jiayan Chen and Huckleberry Febbo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1-rc1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

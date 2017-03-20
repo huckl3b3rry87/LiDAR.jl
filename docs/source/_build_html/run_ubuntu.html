@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basic Usage &mdash; LiDAR.jl 0.0.1-rc1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="LiDAR.jl 0.0.1-rc1 documentation" href="index.html"/>
+        <link rel="prev" title="Installation on Ubuntu 16.04" href="installation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> LiDAR.jl
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation on Ubuntu 16.04</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#start-roscore">1. Start <code class="docutils literal"><span class="pre">roscore</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-a-ros-node-in-python-that-communicates-to-a-julia-node">2. Make a ROS node in <code class="docutils literal"><span class="pre">python</span></code> that communicates to a <code class="docutils literal"><span class="pre">julia</span></code> node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-gazebo-model-of-the-lidar">3. run <code class="docutils literal"><span class="pre">gazebo</span></code> model of the LiDAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-a-julia-function-that-can-communicate-with-the-lidar-model">4. Run a <code class="docutils literal"><span class="pre">julia</span></code> function that can communicate with the <code class="docutils literal"><span class="pre">LiDAR</span></code> model</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LiDAR.jl</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Basic Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/run_ubuntu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <ul class="simple">
+<li>NOTE: the following is designed for use with Ubuntu 16.04</li>
+</ul>
+<div class="section" id="basic-usage">
+<h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="start-roscore">
+<h2>1. Start <code class="docutils literal"><span class="pre">roscore</span></code><a class="headerlink" href="#start-roscore" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Background Information</p>
+<dl class="last docutils">
+<dt><a class="reference external" href="http://wiki.ros.org/roscore">roscore</a> is a collection of nodes and progams that are needed to use a ROS system.</dt>
+<dd><ul class="first last simple">
+<li>A roscore must be running for ROS nodes to talk</li>
+</ul>
+</dd>
+<dt>Linking GAZEBO to ROS</dt>
+<dd><ul class="first last simple">
+<li>GAZEBO can be linked to ROS using <a class="reference external" href="http://gazebosim.org/tutorials?tut=ros_overview">this link</a>.</li>
+</ul>
+</dd>
+<dt>Linking ROS to julia</dt>
+<dd><ul class="first last simple">
+<li>ROS can be linked to julia using <a class="reference external" href="http://www.ros.org/news/2014/12/announcing-robotosjl-an-interface-to-the-julia-language.html">this package</a>.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<ol class="upperalpha simple">
+<li>open a new terminal -&gt; <code class="docutils literal"><span class="pre">ctr``+``alt``+``t</span></code></li>
+<li>in the terminal type <code class="docutils literal"><span class="pre">roscore</span></code> and hit <code class="docutils literal"><span class="pre">enter</span></code></li>
+</ol>
+</div>
+<div class="section" id="make-a-ros-node-in-python-that-communicates-to-a-julia-node">
+<h2>2. Make a ROS node in <code class="docutils literal"><span class="pre">python</span></code> that communicates to a <code class="docutils literal"><span class="pre">julia</span></code> node<a class="headerlink" href="#make-a-ros-node-in-python-that-communicates-to-a-julia-node" title="Permalink to this headline">¶</a></h2>
+<ol class="upperalpha simple">
+<li>open another terminal -&gt; <code class="docutils literal"><span class="pre">ctr``+``shift``+``t</span></code></li>
+<li>navigate to the folder containing <code class="docutils literal"><span class="pre">echoinode.py</span></code> (i.e. <code class="docutils literal"><span class="pre">./scr</span></code>)</li>
+<li>in the terminal type <code class="docutils literal"><span class="pre">python</span> <span class="pre">echonode.py</span></code> and hit <code class="docutils literal"><span class="pre">enter</span></code></li>
+</ol>
+</div>
+<div class="section" id="run-gazebo-model-of-the-lidar">
+<h2>3. run <code class="docutils literal"><span class="pre">gazebo</span></code> model of the LiDAR<a class="headerlink" href="#run-gazebo-model-of-the-lidar" title="Permalink to this headline">¶</a></h2>
+<ol class="upperalpha simple">
+<li>navigate to the folder <code class="docutils literal"><span class="pre">.scr/c_code</span></code></li>
+<li>in the terminal type <code class="docutils literal"><span class="pre">gazebo</span> <span class="pre">velodyne.world</span></code> and hit <code class="docutils literal"><span class="pre">enter</span></code></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>A Gazebo gui should appear on the screen</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="run-a-julia-function-that-can-communicate-with-the-lidar-model">
+<h2>4. Run a <code class="docutils literal"><span class="pre">julia</span></code> function that can communicate with the <code class="docutils literal"><span class="pre">LiDAR</span></code> model<a class="headerlink" href="#run-a-julia-function-that-can-communicate-with-the-lidar-model" title="Permalink to this headline">¶</a></h2>
+<ol class="upperalpha simple">
+<li>open another terminal -&gt; <code class="docutils literal"><span class="pre">ctr``+``shift``+``t</span></code></li>
+<li>navigate to the folder containing <code class="docutils literal"><span class="pre">handler.jl</span></code> (i.e. <code class="docutils literal"><span class="pre">./scr</span></code>)</li>
+<li>in the terminal type <code class="docutils literal"><span class="pre">julia</span></code> and hit <code class="docutils literal"><span class="pre">enter</span></code></li>
+</ol>
+<p>#. in the <code class="docutils literal"><span class="pre">julia</span></code> type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">include</span><span class="p">(</span><span class="s2">&quot;handler.jl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation on Ubuntu 16.04" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Jiayan Chen and Huckleberry Febbo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1-rc1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
