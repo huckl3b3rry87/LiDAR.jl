@@ -11,14 +11,15 @@ The full documentation can be found [here](http://lidarjl.readthedocs.io/en/late
 
 ## Installation
 
-In Julia, you can install the VehicleModels.jl package by typing:
-```julia
-julia>Pkg.clone("https://github.com/huckl3b3rry87/LiDAR.jl")
+In Julia, you can install the LiDAR.jl package by typing:
+```
+Pkg.clone("https://github.com/huckl3b3rry87/LiDAR.jl")
 ```
 
 ## Tutorial (TODO)
 
 The example for this package are available by typing:
-```julia
-julia>using IJulia
-julia>notebook(dir = Pkg.dir("LiDAR")*"/examples")
+```
+using IJulia
+notebook(dir = Pkg.dir("LiDAR")*"/examples")
+```
