@@ -1,3 +1,4 @@
+
 # TODO: use proper data type(s) here
 #       to receive message from ROS (and actually from Gazebo)
 function callback(msg::Float64MultiArray)

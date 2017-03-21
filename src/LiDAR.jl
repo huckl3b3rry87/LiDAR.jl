@@ -21,7 +21,7 @@ include("utils.jl") # functions
 function __init__()
   addprocs(3);
 
-  # start up a roscore
+  # start up a roscore ?? or is it already running
   #roslaunch.roscore
 
   # run the ptthon script Echo.py to start ROS node to cummunicate between julia and Gazebo
@@ -33,9 +33,11 @@ function __init__()
   println("Ready to Collect Data From Gazebo!");
 
   # start Gazebo
-  gazebo=remotecall(run(`gazebo velodyne.world`),4,());
+  gazebo=remotecall(run,4,(`gazebo velodyne.world`));
   println("Gazebo LiDAR model running!");
 
 end
+
+export data
 
 end # module
